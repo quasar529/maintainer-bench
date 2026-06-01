@@ -52,7 +52,6 @@ See also:
 - [Fixture authoring guide](docs/fixture-authoring.md)
 - [Sample report](examples/sample-report.md)
 - [Roadmap](docs/roadmap.md)
-- [OpenAI Codex for OSS application brief](docs/openai-oss-application-brief.md)
 
 ## Create a fixture
 
