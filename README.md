@@ -1,5 +1,7 @@
 # maintainer-bench
 
+[![maintainer-bench](https://github.com/quasar529/maintainer-bench/actions/workflows/maintainer-bench.yml/badge.svg)](https://github.com/quasar529/maintainer-bench/actions/workflows/maintainer-bench.yml)
+
 This is not an AI code reviewer.
 
 `maintainer-bench` is a repo-local regression test harness for AI-assisted maintainer decisions. It helps open-source projects test whether their issue triage and PR reviewability workflows still match the project's own maintainer policy after prompts, `AGENTS.md`, runner config, or model choices change.

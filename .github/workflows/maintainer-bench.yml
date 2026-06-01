@@ -1,6 +1,9 @@
 name: maintainer-bench
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     paths:
       - "AGENTS.md"
@@ -9,6 +12,10 @@ on:
       - "examples/**"
       - "packages/**"
       - ".github/workflows/maintainer-bench.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   maintainer-bench:
