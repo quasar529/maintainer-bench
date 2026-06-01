@@ -1,7 +1,14 @@
 {
   "name": "@maintainer-bench/github-capture",
   "version": "0.1.0",
+  "description": "GitHub issue and pull request fixture capture for maintainer-bench.",
+  "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quasar529/maintainer-bench.git",
+    "directory": "packages/github-capture"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

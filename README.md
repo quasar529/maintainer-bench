@@ -6,6 +6,17 @@ This is not an AI code reviewer.
 
 `maintainer-bench` is a repo-local regression test harness for AI-assisted maintainer decisions. It helps open-source projects test whether their issue triage and PR reviewability workflows still match the project's own maintainer policy after prompts, `AGENTS.md`, runner config, or model choices change.
 
+## Why maintainers use it
+
+AI agents can help with issue triage and PR reviewability, but maintainers still need a way to catch silent regressions:
+
+- A prompt stops asking for reproductions.
+- A model starts adding noisy labels.
+- A security-sensitive PR no longer mentions the risky file.
+- An `AGENTS.md` change makes review summaries less useful.
+
+`maintainer-bench` turns those expectations into fixtures that can run in CI.
+
 ## What it tests
 
 - Issue decisions: `actionable`, `needs-info`, `duplicate`, `invalid`, `blocked`
@@ -28,7 +39,20 @@ pnpm mb report
 
 The default config uses `examples/mock-runner.mjs`, so the sample suite runs without an API key.
 
+You can run the full local verification flow with:
+
+```bash
+pnpm verify
+```
+
 In CI, use `pnpm mb report --fail-on-failures` after grading so the Markdown report is still written before the job fails.
+
+See also:
+
+- [Fixture authoring guide](docs/fixture-authoring.md)
+- [Sample report](examples/sample-report.md)
+- [Roadmap](docs/roadmap.md)
+- [OpenAI Codex for OSS application brief](docs/openai-oss-application-brief.md)
 
 ## Create a fixture
 
@@ -109,3 +133,7 @@ The most useful contributions are fixture packs:
 - `fixtures/security-sensitive-change`
 
 Each fixture should represent a real maintainer decision pattern, not a synthetic model benchmark puzzle.
+
+## License
+
+MIT

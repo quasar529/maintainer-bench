@@ -1,7 +1,14 @@
 {
   "name": "@maintainer-bench/runners",
   "version": "0.1.0",
+  "description": "Command and OpenAI runners for maintainer-bench.",
+  "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quasar529/maintainer-bench.git",
+    "directory": "packages/runners"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

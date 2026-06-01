@@ -1,0 +1,32 @@
+name: Fixture pack contribution
+description: Propose a new maintainer decision fixture or fixture pack
+title: "[Fixture]: "
+labels: ["fixture"]
+body:
+  - type: dropdown
+    id: workflow
+    attributes:
+      label: Maintainer workflow
+      options:
+        - Issue triage
+        - PR reviewability
+        - Security-sensitive change
+        - Documentation maintenance
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Maintainer decision pattern
+      description: What should the automation learn to preserve?
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Fixture safety
+      options:
+        - label: This fixture contains no secrets or private repository data.
+          required: true
+        - label: Public third-party text is either permitted for redistribution or has been anonymized/re-written.
+          required: true
