@@ -27,6 +27,8 @@ AI agents can help with issue triage and PR reviewability, but maintainers still
 
 The goal is not a public model leaderboard. The goal is private, repeatable maintainer workflow regression tests for each repository.
 
+The included `fixtures/oss-patterns` examples are real-world-inspired and anonymized. They preserve maintainer decision patterns without redistributing full third-party issue or PR text.
+
 ## Quick start
 
 ```bash
@@ -130,6 +132,7 @@ The most useful contributions are fixture packs:
 - `fixtures/python-package`
 - `fixtures/docs-project`
 - `fixtures/security-sensitive-change`
+- `fixtures/oss-patterns`
 
 Each fixture should represent a real maintainer decision pattern, not a synthetic model benchmark puzzle.
 

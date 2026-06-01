@@ -1,6 +1,6 @@
 {
   "name": "@maintainer-bench/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Core schemas and suite loading for maintainer-bench.",
   "license": "MIT",
   "type": "module",

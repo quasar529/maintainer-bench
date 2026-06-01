@@ -1,0 +1,29 @@
+{
+  "kind": "pull_request",
+  "id": "oss-pr-unsigned-token-security-review",
+  "provenance": {
+    "inspiredBy": "https://github.com/bokeh/bokeh/pull/15106",
+    "repo": "bokeh/bokeh",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  },
+  "input": {
+    "title": "Reject unsigned token request payloads",
+    "body": "This pull request tightens session creation so unsigned client-supplied tokens cannot inject extra request-context payload fields. Compatibility is preserved for unsigned token session id and expiry behavior, while signed tokens keep existing payload semantics. The PR includes focused tests for HTTP and websocket session paths.",
+    "comments": [],
+    "changedFiles": [
+      "src/server/contexts.py",
+      "src/server/views/session_handler.py",
+      "src/server/views/ws.py",
+      "tests/unit/server/test_server.py"
+    ],
+    "patchSummary": "Session context handling now rejects extra request payload fields from unsigned tokens. HTTP autoload and websocket paths are updated. Unit tests cover accepting valid session tokens and rejecting unsigned tokens that include request-context payload content."
+  },
+  "expected": {
+    "decision": "actionable",
+    "labels": ["security"],
+    "mustAsk": [],
+    "mustMention": ["unsigned token", "request context", "session handling", "tests included"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "issue",
+  "id": "oss-issue-spa-fallback-actionable",
+  "provenance": {
+    "inspiredBy": "https://github.com/microsoft/aspire/issues/17675",
+    "repo": "microsoft/aspire",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  },
+  "input": {
+    "title": "SPA fallback returns 404 after static publish",
+    "body": "A user reports that an Angular single page app published through a Vite/static website flow loads from the base URL, but refreshing or directly visiting a nested route returns 404 instead of serving index.html. The report includes a minimal reproduction repository, exact reproduction steps, framework details, and the observed proxy/static hosting behavior.",
+    "comments": [
+      "The reporter adds that this seems common for Angular deep links and may indicate either a framework fallback bug or missing documentation around static publish configuration."
+    ],
+    "currentLabels": ["triage:bot-seen"]
+  },
+  "expected": {
+    "decision": "actionable",
+    "labels": ["bug"],
+    "mustAsk": [],
+    "mustMention": ["minimal reproduction provided", "SPA fallback", "Angular", "Vite", "static publish"]
+  }
+}

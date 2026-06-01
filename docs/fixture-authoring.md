@@ -48,3 +48,19 @@ Avoid giant fixtures that try to grade everything at once.
 ## Real issue and PR data
 
 Public does not always mean reusable. If a fixture uses third-party issue or PR content, make sure redistribution is acceptable. When in doubt, rewrite and anonymize the fixture while preserving the maintainer decision pattern.
+
+For public OSS-inspired fixtures, include `provenance` so readers understand where the pattern came from:
+
+```json
+{
+  "provenance": {
+    "inspiredBy": "https://github.com/owner/repo/issues/123",
+    "repo": "owner/repo",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  }
+}
+```
+
+Do not copy large issue bodies, comments, patches, or private context verbatim. Summarize the maintainer decision pattern instead.

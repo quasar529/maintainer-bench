@@ -13,9 +13,19 @@ export const ExpectedSchema = z.object({
 });
 export type Expected = z.infer<typeof ExpectedSchema>;
 
+export const ProvenanceSchema = z.object({
+  inspiredBy: z.string().url(),
+  repo: z.string().min(1),
+  type: z.literal("public-oss-pattern"),
+  anonymized: z.boolean(),
+  capturedAt: z.string().min(1)
+});
+export type Provenance = z.infer<typeof ProvenanceSchema>;
+
 export const IssueFixtureSchema = z.object({
   kind: z.literal("issue"),
   id: z.string().min(1),
+  provenance: ProvenanceSchema.optional(),
   input: z.object({
     title: z.string(),
     body: z.string().default(""),
@@ -28,6 +38,7 @@ export const IssueFixtureSchema = z.object({
 export const PullRequestFixtureSchema = z.object({
   kind: z.literal("pull_request"),
   id: z.string().min(1),
+  provenance: ProvenanceSchema.optional(),
   input: z.object({
     title: z.string(),
     body: z.string().default(""),

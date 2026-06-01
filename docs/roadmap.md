@@ -6,6 +6,7 @@
 - Deterministic grading for decisions, labels, required questions, and required mentions.
 - Command runner and optional OpenAI runner.
 - GitHub Actions report artifact.
+- Real-world-inspired anonymized OSS pattern fixtures.
 
 ## v0.2
 

@@ -1,0 +1,23 @@
+{
+  "kind": "issue",
+  "id": "oss-issue-empty-template-needs-info",
+  "provenance": {
+    "inspiredBy": "https://github.com/TypeStrong/ts-node/issues/2173",
+    "repo": "TypeStrong/ts-node",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  },
+  "input": {
+    "title": "Server does not start",
+    "body": "A user reports that their TypeScript server does not start, but the issue template is effectively empty. Expected behavior, actual behavior, reproduction steps, minimal reproduction, runtime versions, package configuration, and operating system details are all missing.",
+    "comments": [],
+    "currentLabels": []
+  },
+  "expected": {
+    "decision": "needs-info",
+    "labels": ["needs-repro"],
+    "mustAsk": ["minimal reproduction", "ts-node version", "node version", "TypeScript version"],
+    "mustMention": ["empty issue template"]
+  }
+}
