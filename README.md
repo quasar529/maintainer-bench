@@ -31,6 +31,19 @@ The included `fixtures/oss-patterns` examples are real-world-inspired and anonym
 
 ## Quick start
 
+Install the latest release tarball:
+
+```bash
+npm install -g https://github.com/quasar529/maintainer-bench/releases/download/v0.1.3/maintainer-bench-0.1.3.tgz
+maintainer-bench init
+```
+
+Or run it without a global install:
+
+```bash
+npm exec --yes --package https://github.com/quasar529/maintainer-bench/releases/download/v0.1.3/maintainer-bench-0.1.3.tgz -- maintainer-bench init
+```
+
 Use this repository locally:
 
 ```bash

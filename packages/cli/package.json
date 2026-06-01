@@ -1,6 +1,6 @@
 {
   "name": "maintainer-bench",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Repo-local regression tests for AI-assisted maintainer decisions.",
   "license": "MIT",
   "type": "module",
@@ -14,29 +14,24 @@
   },
   "homepage": "https://github.com/quasar529/maintainer-bench#readme",
   "bin": {
-    "maintainer-bench": "./dist/index.js"
+    "maintainer-bench": "./dist/index.cjs"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/index.js",
-    "dist/index.js.map",
+    "dist/index.cjs",
     "dist/index.d.ts"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.cjs"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json && pnpm run bundle",
+    "bundle": "esbuild src/index.ts --bundle --platform=node --format=cjs --target=node20 --outfile=dist/index.cjs"
   },
-  "dependencies": {
-    "@maintainer-bench/core": "workspace:*",
-    "@maintainer-bench/github-capture": "workspace:*",
-    "@maintainer-bench/graders": "workspace:*",
-    "@maintainer-bench/runners": "workspace:*",
-    "commander": "^14.0.2"
-  }
+  "dependencies": {}
 }

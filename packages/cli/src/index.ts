@@ -22,7 +22,7 @@ const program = new Command();
 program
   .name("maintainer-bench")
   .description("Repo-local regression tests for AI-assisted maintainer decisions.")
-  .version("0.1.2");
+  .version("0.1.3");
 
 program
   .command("init")
@@ -285,7 +285,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-      - run: npm install -g maintainer-bench
+      - run: npm install -g https://github.com/quasar529/maintainer-bench/releases/download/v0.1.3/maintainer-bench-0.1.3.tgz
       - run: maintainer-bench run
       - run: maintainer-bench grade
       - run: maintainer-bench report --fail-on-failures >> "$GITHUB_STEP_SUMMARY"
