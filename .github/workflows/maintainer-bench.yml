@@ -1,0 +1,34 @@
+name: maintainer-bench
+
+on:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - ".maintainer-bench.json"
+      - "fixtures/**"
+      - "examples/**"
+      - "packages/**"
+      - ".github/workflows/maintainer-bench.yml"
+
+jobs:
+  maintainer-bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.23.0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - run: pnpm mb run
+      - run: pnpm mb grade
+      - run: pnpm mb report --fail-on-failures >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v5
+        with:
+          name: maintainer-bench-report
+          path: .maintainer-bench/results/report.md

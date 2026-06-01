@@ -1,0 +1,10 @@
+{
+  "suitePath": "fixtures",
+  "outputPath": ".maintainer-bench/results",
+  "runner": {
+    "type": "command",
+    "command": "node",
+    "args": ["examples/mock-runner.mjs"],
+    "timeoutMs": 60000
+  }
+}

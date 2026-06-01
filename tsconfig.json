@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/graders" },
+    { "path": "./packages/runners" },
+    { "path": "./packages/github-capture" },
+    { "path": "./packages/cli" }
+  ]
+}

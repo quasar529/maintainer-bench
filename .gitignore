@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.maintainer-bench/results/
+coverage/
+*.tsbuildinfo

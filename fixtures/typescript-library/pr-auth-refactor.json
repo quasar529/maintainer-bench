@@ -1,0 +1,17 @@
+{
+  "kind": "pull_request",
+  "id": "ts-pr-auth-refactor",
+  "input": {
+    "title": "Refactor auth middleware",
+    "body": "This changes auth session handling without adding tests.",
+    "comments": [],
+    "changedFiles": ["src/auth/middleware.ts", "src/auth/session.ts"],
+    "patchSummary": "Auth middleware was refactored. No tests were added."
+  },
+  "expected": {
+    "decision": "blocked",
+    "labels": ["needs-tests"],
+    "mustAsk": [],
+    "mustMention": ["auth middleware", "missing tests"]
+  }
+}

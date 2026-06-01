@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@maintainer-bench/core": ["packages/core/src/index.ts"],
+      "@maintainer-bench/graders": ["packages/graders/src/index.ts"],
+      "@maintainer-bench/runners": ["packages/runners/src/index.ts"],
+      "@maintainer-bench/github-capture": ["packages/github-capture/src/index.ts"]
+    }
+  }
+}

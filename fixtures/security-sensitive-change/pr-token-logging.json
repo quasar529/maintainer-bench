@@ -1,0 +1,17 @@
+{
+  "kind": "pull_request",
+  "id": "security-pr-token-logging",
+  "input": {
+    "title": "Add debug logging around auth token handling",
+    "body": "Adds extra logs for token refresh failures.",
+    "comments": [],
+    "changedFiles": ["src/auth/token.ts"],
+    "patchSummary": "Logs token values when refresh fails. This is a security-sensitive change."
+  },
+  "expected": {
+    "decision": "blocked",
+    "labels": ["security"],
+    "mustAsk": [],
+    "mustMention": ["security-sensitive change"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "issue",
+  "id": "docs-issue-typo",
+  "input": {
+    "title": "Docs typo in quickstart",
+    "body": "The docs page has a small typo in the quickstart section.",
+    "comments": [],
+    "currentLabels": []
+  },
+  "expected": {
+    "decision": "actionable",
+    "labels": ["documentation"],
+    "mustAsk": [],
+    "mustMention": []
+  }
+}

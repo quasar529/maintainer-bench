@@ -1,0 +1,16 @@
+{
+  "kind": "issue",
+  "id": "ts-issue-crash-needs-repro",
+  "input": {
+    "title": "Crash when config file is missing",
+    "body": "The package crashes on startup. I do not have a repro yet and there are missing details.",
+    "comments": [],
+    "currentLabels": []
+  },
+  "expected": {
+    "decision": "needs-info",
+    "labels": ["bug", "needs-repro"],
+    "mustAsk": ["minimal reproduction"],
+    "mustMention": []
+  }
+}

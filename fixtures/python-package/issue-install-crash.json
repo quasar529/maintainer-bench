@@ -1,0 +1,16 @@
+{
+  "kind": "issue",
+  "id": "py-issue-install-crash",
+  "input": {
+    "title": "Crash during import on Python 3.12",
+    "body": "Import crashes after installation. Missing details about exact version and repro.",
+    "comments": [],
+    "currentLabels": []
+  },
+  "expected": {
+    "decision": "needs-info",
+    "labels": ["bug", "needs-repro"],
+    "mustAsk": ["minimal reproduction"],
+    "mustMention": []
+  }
+}
