@@ -31,6 +31,8 @@ The included `fixtures/oss-patterns` examples are real-world-inspired and anonym
 
 ## Quick start
 
+Use this repository locally:
+
 ```bash
 pnpm install
 pnpm build
@@ -49,9 +51,30 @@ pnpm verify
 
 In CI, use `pnpm mb report --fail-on-failures` after grading so the Markdown report is still written before the job fails.
 
+## Use in your repository
+
+After installing the CLI, create starter files in your project:
+
+```bash
+maintainer-bench init
+maintainer-bench run
+maintainer-bench grade
+maintainer-bench report
+```
+
+`init` creates:
+
+- `.maintainer-bench.json`
+- `fixtures/maintainer-bench/issue-needs-info.json`
+- `scripts/maintainer-bench-runner.mjs`
+- `.github/workflows/maintainer-bench.yml`
+
+Edit the starter fixture and replace the starter runner with your agent, script, or CLI.
+
 See also:
 
 - [Fixture authoring guide](docs/fixture-authoring.md)
+- [Decision taxonomy](docs/decision-taxonomy.md)
 - [Sample report](examples/sample-report.md)
 - [Roadmap](docs/roadmap.md)
 
@@ -135,6 +158,11 @@ The most useful contributions are fixture packs:
 - `fixtures/oss-patterns`
 
 Each fixture should represent a real maintainer decision pattern, not a synthetic model benchmark puzzle.
+
+Start from:
+
+- [Issue fixture template](templates/issue.fixture.json)
+- [PR fixture template](templates/pr.fixture.json)
 
 ## License
 

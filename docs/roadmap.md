@@ -7,6 +7,7 @@
 - Command runner and optional OpenAI runner.
 - GitHub Actions report artifact.
 - Real-world-inspired anonymized OSS pattern fixtures.
+- Starter `init` command for adopting maintainer-bench in another repository.
 
 ## v0.2
 
@@ -14,6 +15,7 @@
 - Better `suggest-baseline` editing flow.
 - More example fixture packs based on anonymized maintainer workflows.
 - JSON schema export for editor validation.
+- npm publishing workflow for the CLI package.
 
 ## v0.3
 

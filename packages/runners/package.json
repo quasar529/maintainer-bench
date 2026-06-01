@@ -1,6 +1,6 @@
 {
   "name": "@maintainer-bench/runners",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command and OpenAI runners for maintainer-bench.",
   "license": "MIT",
   "type": "module",

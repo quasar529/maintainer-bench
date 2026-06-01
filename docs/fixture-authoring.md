@@ -18,6 +18,11 @@ pnpm mb grade
 pnpm mb report --fail-on-failures
 ```
 
+If you are starting from scratch, copy one of the templates:
+
+- `templates/issue.fixture.json`
+- `templates/pr.fixture.json`
+
 ## Keep fixtures small
 
 Good fixtures test one maintainer decision pattern:

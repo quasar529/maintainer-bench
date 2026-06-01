@@ -22,7 +22,89 @@ const program = new Command();
 program
   .name("maintainer-bench")
   .description("Repo-local regression tests for AI-assisted maintainer decisions.")
-  .version("0.1.0");
+  .version("0.1.2");
+
+program
+  .command("init")
+  .option("--force", "overwrite existing maintainer-bench files", false)
+  .description("Create starter config, fixtures, and GitHub Actions workflow in the current repository.")
+  .action(async (options: { force: boolean }) => {
+    const files = [
+      {
+        path: ".maintainer-bench.json",
+        content: JSON.stringify(
+          {
+            suitePath: "fixtures/maintainer-bench",
+            outputPath: ".maintainer-bench/results",
+            runner: {
+              type: "command",
+              command: "node",
+              args: ["scripts/maintainer-bench-runner.mjs"],
+              timeoutMs: 60000
+            }
+          },
+          null,
+          2
+        ) + "\n"
+      },
+      {
+        path: "fixtures/maintainer-bench/issue-needs-info.json",
+        content: JSON.stringify(
+          {
+            kind: "issue",
+            id: "starter-issue-needs-info",
+            input: {
+              title: "Bug report without enough reproduction details",
+              body: "A user reports a crash but does not include version information, environment details, or a minimal reproduction.",
+              comments: [],
+              currentLabels: []
+            },
+            expected: {
+              decision: "needs-info",
+              labels: ["needs-repro"],
+              mustAsk: ["minimal reproduction", "version information"],
+              mustMention: ["missing reproduction details"]
+            }
+          },
+          null,
+          2
+        ) + "\n"
+      },
+      {
+        path: "scripts/maintainer-bench-runner.mjs",
+        content: starterRunnerScript
+      },
+      {
+        path: ".github/workflows/maintainer-bench.yml",
+        content: starterWorkflow
+      }
+    ];
+
+    const written: string[] = [];
+    const skipped: string[] = [];
+
+    for (const file of files) {
+      if (!options.force && (await exists(file.path))) {
+        skipped.push(file.path);
+        continue;
+      }
+      await fs.mkdir(path.dirname(file.path), { recursive: true });
+      await fs.writeFile(file.path, file.content);
+      written.push(file.path);
+    }
+
+    if (written.length > 0) {
+      console.log(`Created:\n${written.map((file) => `  - ${file}`).join("\n")}`);
+    }
+    if (skipped.length > 0) {
+      console.log(`Skipped existing files:\n${skipped.map((file) => `  - ${file}`).join("\n")}`);
+      console.log("Re-run with --force to overwrite.");
+    }
+    console.log("\nNext steps:");
+    console.log("  1. Edit fixtures/maintainer-bench/issue-needs-info.json for your project.");
+    console.log("  2. Replace scripts/maintainer-bench-runner.mjs with your agent or CLI.");
+    console.log("  3. Run maintainer-bench run && maintainer-bench grade && maintainer-bench report.");
+  });
 
 const capture = program.command("capture").description("Capture GitHub issues or PRs as editable fixtures.");
 
@@ -130,11 +212,6 @@ program
     }
   });
 
-program.parseAsync().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
-
 async function captureFixture(
   githubUrl: string,
   expectedKind: "issue" | "pull_request",
@@ -149,3 +226,72 @@ async function captureFixture(
   await writeJsonFile(targetPath, fixture);
   console.log(`Wrote fixture: ${targetPath}`);
 }
+
+async function exists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+const starterRunnerScript = `#!/usr/bin/env node
+
+let input = "";
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  input += chunk;
+});
+process.stdin.on("end", () => {
+  const fixture = JSON.parse(input);
+  const text = [fixture.input.title, fixture.input.body, ...(fixture.input.comments ?? [])]
+    .join("\\n")
+    .toLowerCase();
+
+  const needsInfo = text.includes("missing") || text.includes("without") || text.includes("does not include");
+
+  console.log(
+    JSON.stringify({
+      decision: needsInfo ? "needs-info" : "actionable",
+      labels: needsInfo ? ["needs-repro"] : [],
+      questions: needsInfo ? ["Please provide a minimal reproduction.", "Please provide version information."] : [],
+      mentions: needsInfo ? ["missing reproduction details"] : [],
+      summary: \`Starter runner output for \${fixture.id}.\`
+    })
+  );
+});
+`;
+
+const starterWorkflow = `name: maintainer-bench
+
+on:
+  pull_request:
+    paths:
+      - ".maintainer-bench.json"
+      - "fixtures/maintainer-bench/**"
+      - "scripts/maintainer-bench-runner.mjs"
+      - ".github/workflows/maintainer-bench.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  maintainer-bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm install -g maintainer-bench
+      - run: maintainer-bench run
+      - run: maintainer-bench grade
+      - run: maintainer-bench report --fail-on-failures >> "$GITHUB_STEP_SUMMARY"
+`;
+
+program.parseAsync().catch((error) => {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+});

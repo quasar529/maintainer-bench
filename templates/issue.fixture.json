@@ -1,0 +1,23 @@
+{
+  "kind": "issue",
+  "id": "my-project-issue-needs-info",
+  "provenance": {
+    "inspiredBy": "https://github.com/owner/repo/issues/123",
+    "repo": "owner/repo",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  },
+  "input": {
+    "title": "Bug report without enough details",
+    "body": "A short anonymized summary of the issue report and why it is difficult to act on.",
+    "comments": [],
+    "currentLabels": []
+  },
+  "expected": {
+    "decision": "needs-info",
+    "labels": ["needs-repro"],
+    "mustAsk": ["minimal reproduction"],
+    "mustMention": ["missing reproduction details"]
+  }
+}

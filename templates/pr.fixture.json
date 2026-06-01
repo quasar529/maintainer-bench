@@ -1,0 +1,24 @@
+{
+  "kind": "pull_request",
+  "id": "my-project-pr-security-review",
+  "provenance": {
+    "inspiredBy": "https://github.com/owner/repo/pull/456",
+    "repo": "owner/repo",
+    "type": "public-oss-pattern",
+    "anonymized": true,
+    "capturedAt": "2026-06-01"
+  },
+  "input": {
+    "title": "Security-sensitive change to session handling",
+    "body": "A short anonymized summary of the pull request and why maintainers should review it carefully.",
+    "comments": [],
+    "changedFiles": ["src/session.ts", "tests/session.test.ts"],
+    "patchSummary": "Summarize the relevant change without copying a large patch verbatim."
+  },
+  "expected": {
+    "decision": "actionable",
+    "labels": ["security"],
+    "mustAsk": [],
+    "mustMention": ["security-sensitive change", "tests included"]
+  }
+}
